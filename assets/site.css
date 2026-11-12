@@ -298,8 +298,7 @@ body::before {
 .ph:hover .cap, .ph:focus-visible .cap { opacity: 1; transform: none; }
 @media (hover: none) { .ph .cap { display: none; } }
 @media (max-width: 560px) {
-  .gallery { --row: 7.25rem; --gap: 4px; }
-  .chapter .gallery { --row: 8.5rem; }
+  .gallery, .chapter .gallery { --row: 6rem; --gap: 4px; }
 }
 
 /* Passing through */
