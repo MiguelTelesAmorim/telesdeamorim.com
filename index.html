@@ -59,6 +59,18 @@ h1 {
 }
 .rule { width: 4.5rem; height: 4px; background: var(--accent); }
 p { margin: 0; max-width: 30rem; font-size: clamp(1.15rem, 3.2vw, 1.4rem); color: var(--muted); }
+.next {
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.next:hover { text-decoration-thickness: 2px; }
+.next:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 </style>
 </head>
 <body>
@@ -66,6 +78,7 @@ p { margin: 0; max-width: 30rem; font-size: clamp(1.15rem, 3.2vw, 1.4rem); color
   <h1>Under construction</h1>
   <div class="rule" aria-hidden="true"></div>
   <p>This site is being built. Please check back soon.</p>
+  <a class="next" href="/travel/">Meanwhile, travel memories: 37 countries in photographs &#8594;</a>
 </main>
 </body>
 </html>
