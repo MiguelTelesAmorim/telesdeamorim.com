@@ -164,6 +164,19 @@ body::before {
 .key i { display: inline-block; width: 0.95rem; height: 0.65rem; border-radius: 1px; background: var(--accent); }
 .key i.t { background: repeating-linear-gradient(45deg, var(--accent) 0 1.5px, var(--land) 1.5px 4px); }
 
+/* Garage timeline (vehicles page) */
+.garage { margin: 0.75rem 0 0; display: grid; gap: 0.75rem; }
+.garage-scroll { overflow-x: auto; }
+.garage-svg { display: block; width: 100%; min-width: 40rem; height: auto; }
+.garage-svg .g-grid { stroke: var(--line); stroke-width: 1; }
+.garage-svg .g-year { fill: var(--muted); font: 400 11px var(--font-mono); text-anchor: middle; }
+.garage-svg .g-label { fill: var(--ink); font: 500 13px var(--font-display); text-anchor: end; }
+.garage-svg .g-now { fill: var(--muted); font: 400 11px var(--font-mono); }
+.garage-svg .g-bar.bike { fill: var(--accent); }
+.garage-svg .g-bar.car { fill: var(--muted); }
+.garage-svg a:hover .g-label, .garage-svg a:focus .g-label { fill: var(--accent); }
+.key i.c { background: var(--muted); }
+
 /* Country index */
 .index { padding-block: 2.5rem 0.5rem; display: grid; gap: 1.25rem; }
 .sec-label { margin: 0; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
@@ -261,6 +274,26 @@ body::before {
 @media (max-width: 760px) {
   .country { grid-template-columns: minmax(0, 1fr); }
   .rail { position: static; }
+}
+
+/* Highlights and subchapters */
+.hl-label { margin: 0.85rem 0 0.1rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.hl { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.3rem; }
+.hl li { position: relative; padding-left: 0.9rem; font-size: 0.88rem; line-height: 1.35; }
+.hl li::before { content: ""; position: absolute; left: 0; top: 0.48em; width: 0.38rem; height: 0.38rem; border-radius: 50%; background: var(--accent); }
+.chapter-intro p.chapter-meta { font-size: 0.78rem; line-height: 1.4; }
+.chapter-intro p.hl-label { margin: 0.35rem 0 0.4rem; font-size: 0.68rem; line-height: 1.4; }
+.hl-row { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.hl-row li { padding: 0.3rem 0.75rem; border: 1px solid var(--line); border-radius: 999px; font-size: 0.92rem; }
+.hl-row li::before { display: none; }
+.country-body { display: grid; gap: 1.5rem; min-width: 0; }
+.sub { display: grid; gap: 0.65rem; min-width: 0; }
+.sub + .sub { padding-top: 1.25rem; border-top: 1px dashed var(--line); }
+.sub-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 0.85rem; }
+.sub-head h4 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.015em; }
+.sub-head p { margin: 0; font-size: 0.88rem; color: var(--muted); }
+@media (max-width: 760px) {
+  .rail .hl { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; }
 }
 
 /* Justified photo rows: each item grows in proportion to its aspect ratio, so a row shares one height. */
