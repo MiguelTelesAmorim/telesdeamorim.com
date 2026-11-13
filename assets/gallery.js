@@ -52,6 +52,20 @@
     });
   });
 
+  // landmark links open the lightbox on the photograph of that landmark
+  var byHref = {};
+  links.forEach(function (a, n) { byHref[a.getAttribute('href')] = n; });
+  Array.prototype.forEach.call(document.querySelectorAll('a.lm-link'), function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      var n = byHref[a.getAttribute('href')];
+      if (n === undefined) return;
+      e.preventDefault();
+      show(n);
+      dlg.showModal();
+    });
+  });
+
   dlg.querySelector('.lb-prev').addEventListener('click', function () { show(current - 1); });
   dlg.querySelector('.lb-next').addEventListener('click', function () { show(current + 1); });
   dlg.querySelector('.lb-close').addEventListener('click', function () { dlg.close(); });

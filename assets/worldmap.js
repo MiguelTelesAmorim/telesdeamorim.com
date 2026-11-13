@@ -1,4 +1,5 @@
-/* World map for the travel page: visited countries in the accent colour, airport stopovers hatched.
+/* World map for the travel page: visited countries in the accent colour, airport stopovers hatched,
+   and a pin for every city and place.
    Draws from the Natural Earth 110m outlines in world-atlas; if anything fails to load, the map is removed. */
 (function () {
   var fig = document.getElementById('worldmap');
@@ -75,6 +76,17 @@
       a.appendChild(el('circle', { cx: xy[0].toFixed(1), cy: xy[1].toFixed(1), r: '3.6', 'class': 'dot' }));
       svg.appendChild(a);
     });
+
+    // every city and place in the pages, as a small pin that jumps to its section
+    var pins = el('g', {});
+    (data.places || []).forEach(function (p) {
+      var xy = projection([p.lon, p.lat]);
+      if (!xy) return;
+      var a = titled(el('a', { href: '#' + p.anchor }), p.name + ', ' + p.country);
+      a.appendChild(el('circle', { cx: xy[0].toFixed(1), cy: xy[1].toFixed(1), r: '1.7', 'class': 'city' }));
+      pins.appendChild(a);
+    });
+    svg.appendChild(pins);
 
     fig.querySelector('.map-canvas').appendChild(svg);
     fig.classList.add('ready');

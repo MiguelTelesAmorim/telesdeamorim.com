@@ -146,7 +146,12 @@ body::before {
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
 }
-@media (max-width: 560px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.25rem; } }
+.stats.stats-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 760px) { .stats.stats-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 1.25rem; } }
+@media (max-width: 560px) {
+  .stats, .stats.stats-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.25rem; }
+  .stats.stats-5 div:last-child { grid-column: 1 / -1; }
+}
 
 /* World map */
 .worldmap { margin: 0.75rem 0 0; }
@@ -295,6 +300,87 @@ body::before {
 @media (max-width: 760px) {
   .rail .hl { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; }
 }
+
+/* Cities and places: a block per city, town or wild place, with its landmarks as links into the lightbox */
+.place { display: grid; gap: 0.55rem; min-width: 0; }
+.region .place { padding-top: 0.6rem; }
+.sub .place + .place, .country-body > .sub > .place + .place { padding-top: 0.9rem; }
+.place-head, .region-head, .sub-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 0.7rem; }
+.place-name { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; letter-spacing: -0.01em; }
+.region .place-name { font-size: 1.15rem; }
+.place-row { --prow: 12.5rem; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1rem 0.9rem; }
+.chapter .place-row { --prow: 15rem; }
+.place-row::after { content: ""; flex-grow: 1000000; }
+.region .place-row { padding-top: 0.6rem; }
+.place-row .place.sm {
+  padding-top: 0;
+  min-width: 0;
+  flex-grow: calc(var(--sar) * 100);
+  flex-basis: calc(var(--sar) * var(--prow) + 10px);
+  max-width: calc(var(--sar) * var(--prow) * 1.45 + 10px);
+}
+.place.sm .gallery::after { display: none; }
+@media (max-width: 560px) {
+  .place-row { gap: 0.9rem 0.6rem; }
+  .place-row .place.sm { flex: 0 0 calc(50% - 0.3rem); max-width: calc(50% - 0.3rem); }
+  .place-row .place.sm.w2 { flex-basis: 100%; max-width: 100%; }
+}
+.sub .place-row + .place, .sub .place + .place-row, .sub .place-row + .place-row { padding-top: 0.9rem; }
+.kind { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.lm { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.lm a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.65rem 0.2rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lm a::before {
+  content: "";
+  flex: none;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: var(--accent);
+}
+.lm a:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 560px) { .lm a { font-size: 0.78rem; padding-block: 0.25rem; } }
+
+/* A to Z of cities and places */
+.az-sec { padding-top: 0.5rem; }
+.az-wrap { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.az-wrap > summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding-block: 0.9rem;
+  cursor: pointer;
+  list-style: none;
+}
+.az-wrap > summary::-webkit-details-marker { display: none; }
+.az-n { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); }
+.az-wrap[open] .az-n { font-size: 0; }
+.az-wrap[open] .az-n::before { content: "Hide the list"; font-size: 0.75rem; }
+.az { columns: 5 11.5rem; column-gap: 2rem; padding-block: 0.5rem 1.5rem; }
+.az-group { break-inside: avoid; margin-bottom: 1rem; }
+.az-group h3 { margin: 0 0 0.25rem; font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; line-height: 1; color: var(--accent); }
+.az-group ul { list-style: none; margin: 0; padding: 0; }
+.az-group a { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; padding-block: 0.12rem; color: var(--ink); text-decoration: none; font-size: 0.92rem; line-height: 1.35; }
+.az-group a:hover { color: var(--accent); }
+.az-group .n { font-family: var(--font-mono); font-size: 0.66rem; color: var(--muted); text-align: right; }
+.map-canvas .city { fill: var(--ink); stroke: var(--paper); stroke-width: 0.5; transition: fill 0.15s; }
+.map-canvas a:hover .city, .map-canvas a:focus .city { fill: var(--paper); stroke: var(--ink); stroke-width: 1; }
+.key i.p { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--ink); }
 
 /* Justified photo rows: each item grows in proportion to its aspect ratio, so a row shares one height. */
 .gallery { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--gap); }
