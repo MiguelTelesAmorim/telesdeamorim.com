@@ -2,87 +2,53 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Under construction</title>
+<title>Miguel Teles de Amorim</title>
+<meta name="description" content="Photographs from the road: 38 countries, and the motorcycles and cars that took me there.">
+<meta name="theme-color" content="#0a1733">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400&display=swap" rel="stylesheet">
-<style>
-:root {
-  --paper: #f7f5f5;
-  --ink: #1d1819;
-  --muted: #6b6163;
-  --accent: #7a1f3d;
-  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #171314;
-    --ink: #efe9ea;
-    --muted: #a3979a;
-    --accent: #e28ea6;
-    color-scheme: dark;
-  }
-}
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 1.125rem;
-  line-height: 1.5;
-  display: flex;
-  align-items: center;
-}
-main {
-  width: 100%;
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 2rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-h1 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.75rem, 12vw, 6rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  text-wrap: balance;
-}
-.rule { width: 4.5rem; height: 4px; background: var(--accent); }
-p { margin: 0; max-width: 30rem; font-size: clamp(1.15rem, 3.2vw, 1.4rem); color: var(--muted); }
-.next {
-  align-self: flex-start;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
-  color: var(--accent);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-.links { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-.next:hover { text-decoration-thickness: 2px; }
-.next:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body class="home">
+<header class="topbar"><div class="wrap">
+  <a class="mark" href="/">telesdeamorim<span>.com</span></a>
+  <nav class="topnav" aria-label="Sections"><a href="/travel/">Travel</a><a href="/vehicles/">Vehicles</a></nav>
+</div></header>
 <main>
-  <h1>Under construction</h1>
+<section class="hero wrap home-hero">
+  <p class="home-kicker">Miguel Teles de Amorim</p>
+  <h1>Photographs <em>from the road</em></h1>
   <div class="rule" aria-hidden="true"></div>
-  <p>This site is being built. Please check back soon.</p>
-  <nav class="links" aria-label="Sections">
-    <a class="next" href="/travel/">Meanwhile, travel memories: 37 countries and 218 cities and places in photographs &#8594;</a>
-    <a class="next" href="/vehicles/">Vehicles: the motorcycles and cars, 2013 to now &#8594;</a>
-  </nav>
+  <p class="lede">38 countries, and the motorcycles and cars that took me there. The rest of the site is still being built.</p>
+</section>
+<section class="wrap doors" aria-label="Sections">
+  <a class="door" href="/travel/">
+    <img src="travel/photos/italy/01.jpg" width="1600" height="1200" alt="Isola Bella from above, Taormina" decoding="async" fetchpriority="high">
+    <span class="door-text">
+      <span class="door-kicker">38 countries &#183; 223 cities and places</span>
+      <span class="door-title">Travel <em>memories</em></span>
+      <span class="door-sub">Landmarks and landscapes in 749 photographs, 2011&#8211;2026. The places, not the people.</span>
+      <span class="door-go" aria-hidden="true">&#8594;</span>
+    </span>
+  </a>
+  <a class="door" href="/vehicles/">
+    <img src="vehicles/photos/r1250gs-adventure-40-years/16.jpg" width="1440" height="1080" alt="A motorcycle silhouetted against the sunset in the Serra da Estrela" decoding="async">
+    <span class="door-text">
+      <span class="door-kicker">7 on two wheels &#183; 4 on four</span>
+      <span class="door-title">Vehicles <em>two wheels and four</em></span>
+      <span class="door-sub">The garage since 2013, and the roads it took me down, in 201 photographs.</span>
+      <span class="door-go" aria-hidden="true">&#8594;</span>
+    </span>
+  </a>
+</section>
 </main>
+<footer class="wrap site-foot">
+  <span>Photographs &#169; Miguel Teles de Amorim</span>
+  <span><a href="/travel/">Travel</a> &#183; <a href="/vehicles/">Vehicles</a></span>
+</footer>
 </body>
 </html>

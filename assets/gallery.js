@@ -12,6 +12,31 @@
     img.addEventListener('error', done, { once: true });
   });
 
+  // find a city or place: filters the A to Z list as you type (accents and case ignored)
+  var q = document.getElementById('az-q');
+  if (q) {
+    var fold = function (s) { return s.normalize ? s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase() : s.toLowerCase(); };
+    var details = q.closest('details');
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.az-group'));
+    var none = document.getElementById('az-none');
+    var rows = [];
+    groups.forEach(function (g) {
+      Array.prototype.forEach.call(g.querySelectorAll('li'), function (li) { rows.push({ li: li, g: g, t: fold(li.textContent) }); });
+    });
+    q.addEventListener('input', function () {
+      var v = fold(q.value.trim());
+      if (v && details && !details.open) details.open = true;
+      var shown = new Map(), any = false;
+      rows.forEach(function (r) {
+        var hit = !v || r.t.indexOf(v) !== -1;
+        r.li.hidden = !hit;
+        if (hit) { shown.set(r.g, true); any = true; }
+      });
+      groups.forEach(function (g) { g.hidden = !shown.has(g); });
+      if (none) none.hidden = any;
+    });
+  }
+
   var links = Array.prototype.slice.call(document.querySelectorAll('a.ph'));
   var dlg = document.getElementById('lightbox');
   if (!dlg || !links.length || typeof dlg.showModal !== 'function') return;
@@ -41,16 +66,45 @@
     count.textContent = (current + 1) + ' / ' + links.length;
     preload(current + 1);
     preload(current - 1);
+    // a shareable address for the photo on screen: #photo=<section>/<number>
+    var id = photoId(a);
+    if (id && window.history && history.replaceState) history.replaceState(null, '', '#photo=' + id);
   }
+
+  function photoId(a) {
+    var m = /photos\/([^\/]+\/\d+)\.jpg$/.exec(a.getAttribute('href') || '');
+    return m ? m[1] : '';
+  }
+  var hashBefore = '';
+  function open(n) {
+    if (!dlg.open) hashBefore = /^#photo=/.test(location.hash) ? '' : location.hash;
+    show(n);
+    if (!dlg.open) dlg.showModal();
+  }
+  dlg.addEventListener('close', function () {
+    if (window.history && history.replaceState) history.replaceState(null, '', location.pathname + location.search + hashBefore);
+  });
 
   links.forEach(function (a, n) {
     a.addEventListener('click', function (e) {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
       e.preventDefault();
-      show(n);
-      dlg.showModal();
+      open(n);
     });
   });
+
+  // arriving on a #photo= address opens that photo
+  var m0 = /^#photo=([^\/]+\/\d+)$/.exec(location.hash);
+  if (m0) {
+    for (var k = 0; k < links.length; k++) {
+      if (photoId(links[k]) === m0[1]) {
+        var at = links[k];
+        if (at.scrollIntoView) at.scrollIntoView({ block: 'center' });
+        open(k);
+        break;
+      }
+    }
+  }
 
   // landmark links open the lightbox on the photograph of that landmark
   var byHref = {};
@@ -61,8 +115,7 @@
       var n = byHref[a.getAttribute('href')];
       if (n === undefined) return;
       e.preventDefault();
-      show(n);
-      dlg.showModal();
+      open(n);
     });
   });
 
