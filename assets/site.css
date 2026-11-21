@@ -660,3 +660,7 @@ html:has(.subnav) { scroll-padding-top: 6.5rem; }
 .door.door-pro { min-height: 0; }
 .pro-cta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .pro-btn-alt { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+
+/* Legal pages (Impressum, privacy) */
+.legal h2 { margin: 1.6rem 0 0.45rem; font-size: 1.2rem; line-height: 1.3; letter-spacing: -0.01em; }
+.legal .vg-intro-text > div > h2:first-child { margin-top: 0; }
