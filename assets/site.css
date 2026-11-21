@@ -202,7 +202,7 @@ html:has(.subnav) { scroll-padding-top: 6.5rem; }
 
 /* Country index */
 .index { padding-block: 2.5rem 0.5rem; display: grid; gap: 1.25rem; }
-.sec-label { margin: 0; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.sec-label { margin: 0; font-weight: 400; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .index-grid { columns: 4 13rem; column-gap: 2.25rem; }
 .index-grid > div { margin-bottom: 1.6rem; }
 .index-grid h3 { margin: 0 0 0.5rem; font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; break-after: avoid; }
@@ -558,7 +558,7 @@ html:has(.subnav) { scroll-padding-top: 6.5rem; }
 .vg-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
 .vg-cards-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
 .vg-card { padding: 1.1rem 1.25rem 1.2rem; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
-.vg-card h4, .vg-place-text h4 { margin: 0 0 0.4rem; font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; }
+.vg-card h3, .vg-card h4, .vg-place-text h4 { margin: 0 0 0.4rem; font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; }
 .vg-card p { margin: 0; font-size: 0.98rem; line-height: 1.55; }
 .vg-place { display: grid; gap: 1rem 2rem; margin-bottom: 1.75rem; align-items: start; }
 .vg-place-text p { margin: 0 0 0.5rem; }
