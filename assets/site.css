@@ -631,3 +631,5 @@ body::before {
 .door.door-pro::after { display: none; }
 .door.door-pro .door-text { position: relative; max-width: 46rem; }
 .door.door-pro { min-height: 0; }
+.pro-cta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pro-btn-alt { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
