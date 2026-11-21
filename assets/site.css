@@ -95,7 +95,18 @@ body::before {
 .topnav::-webkit-scrollbar { display: none; }
 .topnav a { color: var(--ink); text-decoration: none; white-space: nowrap; }
 .topnav a:hover { color: var(--accent); }
-@media (max-width: 640px) { .topnav .ch { display: none; } }
+.topnav a[aria-current="page"] { color: var(--accent); }
+.subnav { border-top: 1px solid var(--line); }
+.subnav .wrap { display: flex; justify-content: flex-start; gap: 1.4rem; min-height: 2.4rem; align-items: center; overflow-x: auto; scrollbar-width: none; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; }
+.subnav .wrap::-webkit-scrollbar { display: none; }
+.subnav a { color: var(--muted); text-decoration: none; white-space: nowrap; }
+.subnav a:hover { color: var(--ink); }
+html:has(.subnav) { scroll-padding-top: 6.5rem; }
+@media (max-width: 480px) {
+  .mark span { display: none; }
+  .topbar .wrap { font-size: 0.85rem; gap: 0.6rem; }
+  .topnav { gap: 0.6rem; }
+}
 
 /* Hero */
 .hero { padding-block: clamp(2.5rem, 7vw, 5.5rem) 1.5rem; display: grid; gap: 1.6rem; }
@@ -602,3 +613,34 @@ body::before {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* Professional: career, education and credentials, laid out like the Vigo guide's timeline */
+.pro-hero h1 { font-size: clamp(2.8rem, 8.5vw, 6.5rem); text-wrap: balance; }
+.pro-hero .lede { max-width: 44rem; }
+.pro-text { margin: 0; max-width: 44rem; color: var(--muted); }
+.pro-cta { margin: 0; }
+.pro-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.1rem; border-radius: 999px;
+  background: var(--fill); color: #fff; text-decoration: none;
+  font: 500 0.95rem/1 var(--font-display);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.pro-btn:hover, .pro-btn:focus-visible { background: var(--accent); color: var(--paper); }
+.pro-tags { list-style: none; margin: 1.25rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 60rem; }
+.pro-tags li { padding: 0.4rem 0.8rem; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); font-family: var(--font-display); font-size: 0.92rem; }
+.pro-org { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.9rem; margin: 2.25rem 0 0; font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; letter-spacing: -0.01em; }
+.pro-org span { font-family: var(--font-mono); font-weight: 400; font-size: 0.78rem; color: var(--muted); letter-spacing: 0.04em; }
+.pro-time { margin-top: 0.75rem; }
+.pro-time p + p { margin-top: 0.35rem; }
+.pro-time .pro-where { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); letter-spacing: 0.02em; }
+.pro-cols { margin-top: 1.25rem; }
+.pro-cols li span:first-child { min-width: 0; }
+
+/* Home: the Professional door has no photograph, just the sky */
+.door.door-pro { background: radial-gradient(120% 140% at 85% 0%, var(--deep), var(--sky) 45%, var(--panel)); min-height: clamp(15rem, 24vw, 19rem); }
+.door.door-pro::after { display: none; }
+.door.door-pro .door-text { position: relative; max-width: 46rem; }
+.door.door-pro { min-height: 0; }
+.pro-cta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pro-btn-alt { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
