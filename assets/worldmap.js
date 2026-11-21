@@ -92,7 +92,7 @@
     fig.classList.add('ready');
   }
 
-  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
+  fetch('../assets/vendor/countries-110m.json')
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(draw)
     .catch(fail);
