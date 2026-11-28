@@ -40,7 +40,7 @@
     var projection = window.d3.geoEqualEarth().fitExtent([[2, 2], [W - 2, H - 2]], { type: 'FeatureCollection', features: features });
     var path = window.d3.geoPath(projection);
 
-    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': fig.getAttribute('data-label') || 'World map' });
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'group', 'aria-label': fig.getAttribute('data-label') || 'World map' });
     var defs = el('defs', {});
     var pattern = el('pattern', { id: 'hatch', width: '5', height: '5', patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' });
     pattern.appendChild(el('rect', { 'class': 'hatch-bg', width: '5', height: '5' }));
